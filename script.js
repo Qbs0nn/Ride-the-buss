@@ -12,8 +12,8 @@ document.querySelector(".bet").textContent = document.querySelector(".slider").v
 initGame()
 function initGame() {
     drawCard()
-    document.querySelector(".slider").max = document.querySelector(".balance").textContent
-    updateMultiplier(); // Add this line
+    document.querySelector(".slider").max = document.querySelector(".balance").textContent / 5
+    updateMultiplier();
 }
 
 function drawCard() {
@@ -107,7 +107,7 @@ function resetGame() {
     document.querySelector(".cardFront").style.backgroundColor = "white"
     document.querySelector(".suits").textContent = ""
     document.querySelector(".slider").disabled = false
-    document.querySelector(".slider").max = document.querySelector(".balance").textContent
+    document.querySelector(".slider").max = document.querySelector(".balance").textContent / 5
     document.querySelectorAll(".value").forEach(element => {
         element.textContent = ""
     })
@@ -115,7 +115,7 @@ function resetGame() {
 
     document.querySelector(".question").textContent = questions[question]
     resetButtons()
-    updateMultiplier(); // Add this line
+    updateMultiplier();
     setTimeout(() => {
         initGame()
     }, 400)
@@ -153,7 +153,7 @@ function prepareNextStep() {
     let value = drawnCards[drawnCards.length - 1].value;
     animateCardToHistory(value, suit);
     question++;
-    updateMultiplier(); // Add this line to update the multiplier
+    updateMultiplier();
     
     switch(question) {
         case 1:
