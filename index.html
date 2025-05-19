@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="themeHandler.js" defer></script>
+    <title>Ride the bus</title>
+</head>
+<body>
+    <div class="themeSelector">
+        <div class="themeButton" data-theme="default" title="Default Theme">
+            <div class="colorSwatch" style="background: linear-gradient(45deg, #22223b, #4a4e69);"></div>
+        </div>
+        <div class="themeButton" data-theme="dark" title="Deep Abbys Theme">
+            <div class="colorSwatch" style="background: linear-gradient(45deg, #1a1a1a, #2c2c2c);"></div>
+        </div>
+        <div class="themeButton" data-theme="purple" title="Midnight Purple Theme">
+            <div class="colorSwatch" style="background: linear-gradient(45deg, #241734, #412a57);"></div>
+        </div>
+        <div class="themeButton" data-theme="forest" title="Rainy Forest Theme">
+            <div class="colorSwatch" style="background: linear-gradient(45deg, #2e3a24, #4a5d3f)"></div>
+        </div>
+        <div class="themeButton" data-theme="sunTemple" title="Sun Temple Theme">
+            <div class="colorSwatch" style="background: linear-gradient(45deg, #f9f7f7, #f5e1a4)"></div>
+        </div>
+        <div class="themeButton" data-theme="lava" title="Lava Lamp Theme">
+            <div class="colorSwatch" style="background: linear-gradient(45deg, #3b1f1f, #5c2e2e)"></div>
+        </div>
+                <div class="themeButton" data-theme="pink" title="Pink Theme">
+            <div class="colorSwatch" style="background: linear-gradient(45deg, #f3c8e5, #daa6c9)"></div>
+        </div>
+    </div>
+    <h1 class="gameTitle">Ride The Bus</h1>
+<main>
+        <div class="gameContainer">
+             <div class="multiplierIndicator">Forfeit: <span class="multiplierValue">x0</span></div>
+            <div class="cardContainer">
+                <div class="card">
+                    <div class="cardBack cardFace"></div>
+                    <div class="cardFront cardFace">
+                        <div class="cardCorner topLeft">
+                            <div class="value"></div>
+                        </div>
+                        <div class="suits" data-suit=""></div>
+                        <div class="cardCorner bottomRight">
+                            <div class="value"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="buttonContainer">
+                <div class="questionContainer">
+                    <h1 class="question"></h1>
+                </div>
+                <div class="buttons">
+                    <button class="red">Red</button>
+                    <button class="black">Black</button>
+                </div>
+                <button class="forfeit">Forfeit</button>
+            </div>
+
+            <div class="sliderContainer">
+                <h3 class="bet"></h3>
+                <input type="range" min="1" max="500" value="1" class="slider">
+                <h3 class="userMoney">Your balance: <span class="balance">500</span></h3>
+            </div> 
+        </div>
+
+    <div class="cardHistoryPanel">
+        <h3 class="historyTitle">Previous cards</h3>
+        <div class="cardHistory"></div>
+    </div>
+</main>
+    <div class="popup">
+        <div class="popupContent">
+            <h1 class="popupTitle">lorem</h1>
+            <p class="popupText">lorem</p>
+            <button class="closePopup">Close</button>
+        </div>
+    </div>
+</body>
+</html>

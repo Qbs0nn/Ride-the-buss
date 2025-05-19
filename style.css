@@ -1,0 +1,642 @@
+:root {
+    --bg-primary: #2c3e50;
+    --bg-darker: #1a2530;
+    --bg-medium: #34495e;
+    
+    --accent-primary: #3498db;
+    --accent-secondary: #9b59b6;
+    --accent-dark: #054977;
+    --accent-medium: #2980b9;
+    
+    --btn-primary-light: #ff5252;
+    --btn-primary-dark: #d50000;
+    --btn-primary: #e74c3c;
+    --btn-secondary-light: #212121;
+    --btn-secondary: #000000;
+    --text-light: #fff;
+    
+    --shadow-dark: rgba(0, 0, 0, 0.5);
+    --shadow-medium: rgba(0, 0, 0, 0.3);
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --shadow-very-light: rgba(0, 0, 0, 0.1);
+    --glow-light: rgba(255, 255, 255, 0.2);
+    --glow-very-light: rgba(255, 255, 255, 0.1);
+    --overlay: rgba(0, 0, 0, 0.4);
+    --card-bg: rgba(52, 73, 94, 0.8);
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-darker));
+    font-family: 'Poppins', sans-serif;
+    overflow-y: hidden;
+}
+main {
+    display: flex;
+    gap: 100px;
+}
+.userMoney {
+    font-size: 1rem;
+    font-weight: 800;
+    color: transparent;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 3px 10px var(--shadow-light);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.balance {
+    font-size: 1rem;
+    font-weight: 800;
+    color: transparent;
+    background: linear-gradient(45deg, var(--accent-dark), var(--accent-medium));
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 3px 10px var(--shadow-light);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.bet {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: transparent;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 3px 10px var(--shadow-light);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.gameContainer {
+    background: linear-gradient(to bottom, var(--bg-medium), var(--bg-primary));
+    box-shadow: 0 15px 35px var(--shadow-dark);
+    border-radius: 20px;
+    width: 600px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border: 1px solid var(--glow-very-light);
+    padding: 20px 10px;
+}
+.sliderContainer {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px 5px;
+}
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 90%;
+    height: 0px;
+    background: linear-gradient(45deg, var(--accent-medium), var(--accent-secondary));
+    border-radius: 5px;
+    outline: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    background: linear-gradient(45deg, var(--accent-dark), var(--accent-secondary));
+    border-radius: 5px;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background: var(--btn-primary);
+    border-radius: 50%;
+    margin-top: -6px;
+    cursor: pointer;
+}
+.gameTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: transparent;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 3px 10px var(--shadow-light);
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+}
+.buttons button {
+    flex: 0 0 calc(50% - 15px);
+    max-width: calc(50% - 15px);
+    min-width: 110px;
+}
+.forfeit {
+    display: block;
+    width: 80%;
+    margin-top: 5px;
+    order: 3;
+    background-position: left center;
+    box-shadow: 0 10px 20px rgba(213, 0, 0, 0.4);
+    background-image: linear-gradient(45deg, var(--btn-primary-light) 0%, var(--btn-primary-dark) 50%, var(--btn-primary-light) 100%);
+}
+.question {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px var(--shadow-medium);
+    font-weight: 600;
+    margin-top: 0;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+.cardContainer {
+    perspective: 1000px;
+    width: 200px;
+    height: 300px;
+    filter: drop-shadow(0 10px 15px var(--shadow-medium));
+}
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+.cardFace {
+    backface-visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cardFront {
+    position: relative;
+    transform: rotateY(180deg);
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: var(--text-light);
+    border: 2px solid var(--glow-light);
+}
+.cardBack {
+    background: url('https://www.deckofcardsapi.com/static/img/back.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+}
+.card.flipped {
+    transform: rotateY(180deg);
+}
+button {
+    color: var(--text-light);
+    width: 110px;
+    height: 55px;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px var(--shadow-medium);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-size: 200% auto;
+    background-position: right center;
+}
+.red {
+    background-image: linear-gradient(45deg, var(--btn-primary-light) 0%, var(--btn-primary-dark) 50%, var(--btn-primary-light) 100%);
+}
+.red:hover {
+    background-position: left center;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(213, 0, 0, 0.4);
+}
+.black {
+    background-image: linear-gradient(45deg, var(--btn-secondary-light) 0%, var(--btn-secondary) 50%, var(--btn-secondary-light) 100%);
+}
+.black:hover {
+    background-position: left center;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+.value {
+    color: var(--btn-secondary);
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px var(--shadow-dark);
+}
+.cardFront[data-card-color="red"] .value {
+    color: var(--btn-primary);
+}
+.cardCorner.bottomRight {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    transform: rotateY(180deg);
+}
+.cardCorner.topLeft {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+@font-face {
+  font-family: 'CardSuits';
+  src: url('https://cdn.jsdelivr.net/npm/card-deck-font@1.0.0/font/card-deck.woff2') format('woff2');
+}
+.suits {
+  font-family: 'CardSuits', sans-serif;
+  font-size: 64px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.suits[data-suit="hearts"]::before {
+  content: "♥";
+  color: var(--btn-primary);
+}
+.suits[data-suit="diamonds"]::before {
+  content: "♦";
+  color: var(--btn-primary);
+}
+.suits[data-suit="spades"]::before {
+  content: "♠";
+  color: var(--btn-secondary);
+}
+.suits[data-suit="clubs"]::before {
+  content: "♣";
+  color: var(--btn-secondary);
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay);
+    backdrop-filter: blur(8px);
+    display: none;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    z-index: 1000;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.popupContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 25px 45px var(--shadow-medium);
+    border: 1px solid var(--glow-light);
+    border-radius: 20px;
+    text-align: center;
+    padding: 40px;
+    animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+.popupTitle {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 20px var(--shadow-light);
+}
+.popupText {
+    font-size: 18px;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+.closePopup {
+    background-image: linear-gradient(45deg, var(--accent-medium), var(--accent-dark));
+    color: var(--text-light);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 20px var(--shadow-light);
+    transition: all 0.3s ease;
+    width: auto;
+    height: auto;
+    width: 110px;
+    height: 55px;
+}
+.closePopup:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px var(--shadow-medium);
+    background-position: left center;
+    animation: pulse 1.5s infinite;
+}
+.closePopup:active {
+    transform: translateY(0);
+}
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255,255,255,0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(100, 100);
+        opacity: 0;
+    }
+}
+.cardHistoryPanel {
+    width: 80%;
+    max-width: 800px;
+    height: 250px;
+    margin: 30px auto 0;
+    padding: 20px;
+    background: linear-gradient(to bottom, var(--bg-medium), var(--bg-primary));
+    border-radius: 15px;
+    box-shadow: 0 10px 25px var(--shadow-medium);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid var(--glow-very-light);
+}
+.historyTitle {
+    color: var(--text-light);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px var(--shadow-medium);
+    font-weight: 600;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.cardHistory {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+}
+.historyCard {
+    width: 70px;
+    height: 100px;
+    background-color: var(--text-light);
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    box-shadow: 0 5px 15px var(--shadow-medium);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-right: -25px;
+    animation: placeInHistory 0.7s ease-in-out;  
+}
+.historyCard .historyCardValue {
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+.historyCard .historyCardSuit {
+    font-size: 24px;
+    font-family: 'CardSuits', sans-serif;
+}
+.historyCard[data-color="red"] .historyCardValue, 
+.historyCard[data-color="red"] .historyCardSuit {
+    color: var(--btn-primary);
+}
+.historyCard[data-color="black"] .historyCardValue, 
+.historyCard[data-color="black"] .historyCardSuit {
+    color: var(--btn-secondary);
+}
+.historyCard:nth-child(odd) {
+    transform: rotate(1deg);
+}
+.historyCard:nth-child(even) {
+    transform: rotate(-1deg);
+}
+.historyCard:hover {
+    transform: translateY(-10px) rotate(0deg);
+    z-index: 10; 
+}
+.historyCard:hover .historyCardSuit {
+    transform: rotate(initial)
+}
+.cardToHistory {
+    position: fixed;
+    width: 200px;
+    height: 300px;
+    background-color: var(--text-light);
+    border-radius: 15px;
+    box-shadow: 0 10px 25px var(--shadow-medium);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    animation: moveToHistory 0.8s ease-in-out forwards;
+}
+@keyframes moveToHistory {
+    0% {
+        position: fixed;
+        top: 50%;
+        left: 45%;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+        z-index: 100;
+    }
+    100% {
+        position: fixed;
+        top: 55%;
+        left: 60%;
+        transform: translate(-50%, -50%) scale(0.5) rotate(var(--random-rotation));
+        opacity: 0;
+        z-index: 100;
+    }
+}
+@keyframes placeInHistory {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+button:hover {
+    animation: pulse 1.5s infinite;
+    letter-spacing: 2px;
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.themeSelector {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.themeButton {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    padding: 3px;
+    transition: all 0.3s ease;
+}
+.themeButton:hover {
+    transform: scale(1.1);
+}
+.themeButton.active {
+    border: 3px solid var(--accent-secondary);
+}
+.colorSwatch {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+@keyframes moneyLoss {
+  0% { opacity: 0; transform: translateY(0); }
+  20% { opacity: 1; }
+  80% { opacity: 1; transform: translateY(-50px); }
+  100% { opacity: 0; transform: translateY(-70px); }
+}
+@keyframes moneyGain {
+  0% { opacity: 0; transform: translateY(70px); }
+  20% { opacity: 1; transform: translateY(50px); }
+  80% { opacity: 1; transform: translateY(10px); }
+  100% { opacity: 0; transform: translateY(0); }
+}
+.moneyChangeText {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1.3rem;
+  z-index: 10;
+  pointer-events: none;
+}
+.moneyLoss {
+  color: var(--btn-primary);
+  animation: moneyLoss 1.5s ease-out forwards;
+}
+.moneyGain {
+  color: #2ecc71;
+  animation: moneyGain 1.5s ease-out forwards;
+}
+.balance.updated {
+  animation: scorePulse 0.5s ease-in-out;
+}
+@keyframes scorePulse {
+  0% { transform: scale(1); text-shadow: 0 0 0px var(--accent-primary); }
+  50% { transform: scale(1.4); text-shadow: 0 0 20px var(--accent-primary); }
+  100% { transform: scale(1); text-shadow: 0 0 0px var(--accent-primary); }
+}
+.multiplierIndicator {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #2ecc71;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.3);
+  padding: 5px 10px;
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.multiplierValue {
+  font-size: 1.1rem;
+}
+@keyframes dealCard {
+  0% {
+    transform: translateY(-300px) translateX(-100px) rotate(-10deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(10px) translateX(0) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(0);
+  }
+}
+
+.cardContainer:not(:empty) .card {
+  animation: dealCard 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
