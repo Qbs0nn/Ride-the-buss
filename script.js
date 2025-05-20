@@ -6,13 +6,12 @@ const questions = [
      "4. Guess the suit"
 ]
 const drawnCards = []
-var usersBalance = document.querySelector(".balance").textContent
 document.querySelector(".bet").textContent = document.querySelector(".slider").value
-
+var usersBalance = document.querySelector(".balance").textContent
 initGame()
 function initGame() {
     drawCard()
-    document.querySelector(".slider").max = document.querySelector(".balance").textContent / 5
+    document.querySelector(".slider").max = document.querySelector(".balance").textContent
     updateMultiplier();
 }
 
@@ -107,7 +106,11 @@ function resetGame() {
     document.querySelector(".cardFront").style.backgroundColor = "white"
     document.querySelector(".suits").textContent = ""
     document.querySelector(".slider").disabled = false
-    document.querySelector(".slider").max = document.querySelector(".balance").textContent / 5
+    document.querySelector(".slider").value = 0
+    document.querySelector(".slider").max = document.querySelector(".balance").textContent
+
+    document.querySelector(".bet").textContent = document.querySelector(".slider").value
+
     document.querySelectorAll(".value").forEach(element => {
         element.textContent = ""
     })
@@ -191,9 +194,10 @@ function prepareNextStep() {
     }
     else if(question == questions.length) {
         let bet = parseInt(document.querySelector(".slider").value)
+        let usersAccount = parseInt(document.querySelector(".balance").textContent)
         let winnings = bet * 10
-        usersBalance = parseInt(usersBalance) + winnings
-        document.querySelector(".balance").textContent = usersBalance
+        usersAccount = parseInt(usersAccount) + winnings
+        document.querySelector(".balance").textContent = usersAccount
         animateBalanceChange(winnings)
         showPopup(true)
         setTimeout(() => {
@@ -268,7 +272,7 @@ function animateCardToHistory(value, suit) {
     suitElement.className = 'suits'
     suitElement.setAttribute('data-suit', suit)
     
-    const valueElement = document.createElement('div')
+    let valueElement = document.createElement('div')
     valueElement.className = 'value'
     valueElement.style.position = 'absolute'
     valueElement.style.top = '10px'
@@ -285,25 +289,43 @@ function animateCardToHistory(value, suit) {
     }, 750)
 }
 
-document.querySelector(".buttons").addEventListener("click", (event) => {
-    if (event.target.tagName === "BUTTON") {
-        if(question == 0) {
-            let slider = document.querySelector(".slider")
-            let bet = parseInt(slider.value)
-            usersBalance -= bet
-            document.querySelector(".balance").textContent = usersBalance
-            animateBalanceChange(-bet)
-            slider.disabled = true
-        }
-        document.querySelector(".card").classList.add("flipped")
-        setTimeout(() => {
-            document.querySelector(".card").classList.remove("flipped")
+function noMoneyAlert() {
+    let text = document.querySelector(".question")
+    text.textContent = "no money!"
+    text.style.color = "red"
+    text.style.letterSpacing = "2.5px"
+    text.style.textTransform = "uppercase"
+    setTimeout(() => {
+        text.textContent = questions[question]
+        text.style.color = "white"
+        text.style.letterSpacing = "normal"
+        text.style.textTransform = "none"
+    }, 1000)
+}
 
-        if(checkAnswer(event.target))
-            showPopup(false)
-        else
-            prepareNextStep()
-        }, 2000)
+document.querySelector(".buttons").addEventListener("click", (event) => {
+    let usersAccount = parseInt(document.querySelector(".balance").textContent)
+    if (event.target.tagName === "BUTTON") {
+        if(usersAccount == 0) { noMoneyAlert() }
+        else {
+            if(question == 0) {
+                let slider = document.querySelector(".slider")
+                let bet = parseInt(slider.value)
+                usersAccount -= bet
+                document.querySelector(".balance").textContent = usersAccount
+                animateBalanceChange(-bet)
+                slider.disabled = true
+            }
+            document.querySelector(".card").classList.add("flipped")
+            setTimeout(() => {
+                document.querySelector(".card").classList.remove("flipped")
+
+            if(checkAnswer(event.target))
+                showPopup(false)
+            else
+                prepareNextStep()
+            }, 2000)
+    }
     }
 })
 
@@ -315,8 +337,9 @@ document.querySelector(".forfeit").addEventListener("click", () => {
    if(question > 0) {
         let bet = parseInt(document.querySelector(".slider").value)
         let gain = bet * (question + 1)
-        usersBalance = parseInt(usersBalance) + gain
-        document.querySelector(".balance").textContent = usersBalance
+        let usersAccount = parseInt(document.querySelector(".balance").textContent)
+        usersAccount = parseInt(usersAccount) + gain
+        document.querySelector(".balance").textContent = usersAccount
         animateBalanceChange(gain)
         resetGame()
    }
